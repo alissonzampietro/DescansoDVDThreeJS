@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Oi</title>
+</head>
+<body>
+<script type="text/javascript" src="bower_components/three.js/build/three.js"></script>
+<script>
+	var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize(400, 400);
+	document.body.appendChild(renderer.domElement);
+
+	var geometry = new THREE.BoxGeometry(1,1,1);
+	var material = new THREE.MeshBasicMaterial({color: 0x009090});
+	var cube = new THREE.Mesh(geometry,material);
+
+	scene.add(cube);
+
+	//posição da perspectiva de profundidade
+	camera.position.z = 5;
+	var direcaoX = 1;
+	var direcaoY = 1;
+	var direcaoZ = 1;
+
+	//criando função para realizar a renderização
+	function render()
+	{
+		renderer.render(scene, camera);
+		cube.rotation.x += 0.01;
+		cube.rotation.y += 0.02;
+
+		if(cube.position.y >= 3)
+			direcaoY = -1;
+		else if(cube.position.y <= -3)
+			direcaoY = 1;
+
+		if(cube.position.x >= 3)
+			direcaoX = -1;
+		else if(cube.position.x <= -3)
+			direcaoX = 1;
+
+		if(cube.position.z >= 3)
+			direcaoZ = 1;
+		else if(cube.position.z <= -3)
+			direcaoZ = -1;
+
+		cube.position.x += 0.02 * direcaoX;
+		cube.position.y += 0.04 * direcaoY;
+		cube.position.z += 0.001 * direcaoZ;
+
+		requestAnimationFrame(render);
+	}
+
+	render();
+
+</script>
+</body>
+</html>
