@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Oi</title>
+	<title>Cubo de descanso de tela de DVD</title>
 </head>
 <body>
 <script type="text/javascript" src="bower_components/three.js/build/three.js"></script>
@@ -30,7 +30,7 @@
 	{
 		renderer.render(scene, camera);
 		cube.rotation.x += 0.01;
-		cube.rotation.y += 0.02;
+		cube.rotation.y += 0.01;
 
 		if(cube.position.y >= 3)
 			direcaoY = -1;
@@ -48,7 +48,7 @@
 			direcaoZ = -1;
 
 		cube.position.x += 0.02 * direcaoX;
-		cube.position.y += 0.04 * direcaoY;
+		cube.position.y += 0.02 * direcaoY;
 		cube.position.z += 0.001 * direcaoZ;
 
 		requestAnimationFrame(render);
